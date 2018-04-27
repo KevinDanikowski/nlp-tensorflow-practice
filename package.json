@@ -1,0 +1,26 @@
+{
+  "name": "tf-keyword-extractor",
+  "version": "1.0.0",
+  "description": "keyword extractor using tensorflow",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon run.js --exec babel-node",
+    "test": "test"
+  },
+  "keywords": [
+    "tensorflow",
+    "keyword",
+    "extractor",
+    "finder"
+  ],
+  "author": "Kevin Danikowski",
+  "license": "MIT",
+  "dependencies": {
+    "@tensorflow/tfjs": "^0.10.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "nodemon": "^1.17.3"
+  }
+}

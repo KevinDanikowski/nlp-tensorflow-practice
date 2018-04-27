@@ -1,0 +1,4 @@
+start point stack exchange question: https://datascience.stackexchange.com/questions/10077/keyword-phrase-extraction-from-text-using-deep-learning-libraries
+start video instruction base: https://www.youtube.com/watch?v=FLZvOKSCkxY&list=PLQVvvaa0QuDf2JswnfiGkliBInZnIC4HL
+
+we will need to make a training file, by default it will use the algorithym from a specific corpus we choose

@@ -1,0 +1,3 @@
+
+locate packages at: https://www.lfd.uci.edu/~gohlke/pythonlibs/
+When installing from python 3 on mac, `pip3 install nltk-3.2.5-py2.py3-none-any.whl` in the ~/Downloads folder
