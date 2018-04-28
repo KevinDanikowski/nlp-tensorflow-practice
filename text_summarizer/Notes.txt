@@ -1,0 +1,2 @@
+Video: https://www.youtube.com/watch?v=ogrJaOIuBx4
+Github Code: https://github.com/llSourcell/How_to_make_a_text_summarizer
