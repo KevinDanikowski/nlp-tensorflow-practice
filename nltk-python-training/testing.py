@@ -14,8 +14,21 @@ def process_content():
         for i in tokenized:
             words = nltk.word_tokenize(i)
             tagged = nltk.pos_tag(words)
-            print(tagged)
-            # Example: [('We', 'PRP'), ('will', 'MD'), ('compete', 'VB'), ('and', 'CC'), ('excel', 'VB'), ('in', 'IN'),('the', 'DT'), ('global', 'JJ'), ('economy', 'NN'), ('.', '.')]
+
+            chunkGram  = r"""Chunk: {<RB.?>*<VB.?>*<NNP>+<NN>?} """ # r """""" show regex. < starts find, RB for adverb, . for anything, ? for 0-1 of them, * for any number of it. <NNP> is required as you can see from no * after it. Chunk: just notes what you call it
+
+            chunkParser = nltk.RegexpParser(chunkGram)
+            chunked = chunkParser.parse(tagged)
+
+            #print(chunked) # result: finding all these nouns: (S   And/CC   so/RB   we/PRP   move/VBP   forward/RB   --/:   optimistic/JJ   about/IN   our/PRP$   country/NN   ,/,   faithful/JJ   to/TO   its/PRP$   cause/NN   ,/,   and/CC   confident/NN   of/IN   the/DT   victories/NNS   to/TO   come/VB   ./.) 
+            chunked.draw()
+
+
+
+
+
+
+
     except Exception as e:
         print(str(e))
 
