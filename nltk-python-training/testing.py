@@ -8,6 +8,31 @@ from sklearn.naive_bayes import MultinomialNB, GaussianNB, BernoulliNB
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.svm import SVC, LinearSVC, NuSVC
 
+from nltk.classify import ClassifierI
+from statistics import mode
+
+class VoteClassifier(ClassifierI):
+    #some issue in this code
+    def __init__(self, *classifiers) :
+        self._classifiers = classifiers
+
+    def classify(self, features):
+        votes = []
+        for c in self._classifiers: 
+            v = c.classify(features)
+            votes.append(v)
+        return mode(votes)
+    
+    def confidence(self, features):
+        votes = []
+        for c in self._classifiers:
+            v = c.classify(features)
+            votes.append(v)
+        
+        choice_votes = votes.count(mode(votes))
+        conf = choice_votes / len(votes)
+        return conf
+
 documents = [(list(movie_reviews.words(fileid)), category)
             for category in movie_reviews.categories()
             for fileid in movie_reviews.fileids(category)] #tupuls
@@ -79,4 +104,19 @@ print("LinearSVC_classifier Algo Accuracy Percent: ", (nltk.classify.accuracy(Li
 NuSVC_classifier = SklearnClassifier(NuSVC())
 NuSVC_classifier.train(training_set)
 print("NuSVC_classifier Algo Accuracy Percent: ", (nltk.classify.accuracy(NuSVC_classifier, testing_set))*100)
+
+
+
+#code issue past this point
+voted_classifier = VoteClassifier(classifier, MNB_classifier, 
+                                                BernoulliNB_classifier, 
+                                                LogisticRegression_classifier, 
+                                                SGDClassifier_classifier,
+                                                SVC_classifier, 
+                                                LinearSVC_classifier, 
+                                                NuSVC_classifier)
+
+print("voted_classifier Algo Accuracy Percent: ", (nltk.classify.accuracy(voted_classifier, testing_set))*100)
+
+print("Classification: ", voted_classifier.classify(testing_set[0][0]), "Confidence %: ", voted_classifier.confidence(testing_set[0][0]))
 
