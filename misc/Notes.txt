@@ -2,3 +2,5 @@ start point stack exchange question: https://datascience.stackexchange.com/quest
 start video instruction base: https://www.youtube.com/watch?v=FLZvOKSCkxY&list=PLQVvvaa0QuDf2JswnfiGkliBInZnIC4HL
 
 we will need to make a training file, by default it will use the algorithym from a specific corpus we choose
+
+For keyword extractor - perhaps POS can help identify the main words, can use ML to send in POS and main words for dataset
