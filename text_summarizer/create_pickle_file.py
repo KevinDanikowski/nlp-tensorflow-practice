@@ -1,17 +1,25 @@
 # pickle for data files from signalmedia-1m.jsonl
-
+# info from https://github.com/llSourcell/How_to_make_a_text_summarizer/issues/11
 import _pickle as pickle
+import jsonlines
 
 heads = []
 descs = []
 keywords = []
-# for filename in range(numOfFiles):
-with open('../data/too-large-for-git/signalmedia-1m' + '.jsonl','rb') as fp:
-    text = fp.readlines()[0:1000]
-    temp = text
-    heads.append(temp.split("\n")[0])
-    descs.append(text) 
-    keywords.append(None)
+
+with jsonlines.open('../data/too-large-for-git/signalmedia-1m' + '.jsonl','r') as reader:
+    i = 0
+    for obj in reader:
+        if i < 1000:
+            i += 1
+            head = obj["title"]
+            desc = [s.strip() for s in obj["content"].splitlines()]
+            heads.append(head)
+            descs.append(desc)
+            keywords.append(None)
+        else:
+            break
         
-with open('../data/signalmedia_1000articles.pkl', 'wb') as f:
-     pickle.dump((heads,descs,keywords),f)
+# print(heads, descs, keywords)
+with open('../data/tokens.pkl', 'wb') as f:
+    pickle.dump((heads,descs,keywords),f)
