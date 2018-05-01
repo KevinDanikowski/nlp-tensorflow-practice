@@ -10,10 +10,10 @@ keywords = []
 with jsonlines.open('../data/too-large-for-git/signalmedia-1m' + '.jsonl','r') as reader:
     i = 0
     for obj in reader:
-        if i < 1000:
+        if i < 2:
             i += 1
             head = obj["title"]
-            desc = [s.strip() for s in obj["content"].splitlines()]
+            desc = obj["content"]
             heads.append(head)
             descs.append(desc)
             keywords.append(None)
