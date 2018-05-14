@@ -1,5 +1,5 @@
 import _pickle as pickle # cPickle
-from collections import Counter
+from collections import Counter #tallies the total count of words in a list
 import keras
 # import postprocessing
 
@@ -16,13 +16,14 @@ heads[i]
 #Articles
 descs[i]
 
-#tokenize text
-def get_vocab(first):
-    vocabcount, vocab = Counter(w for txt in first for w in txt.split())
-    print(vocabcount, vocab)
-    #return vocab, vocabcount
+#tokenize text, return vocab in order of usage (the should come first)
+def get_vocab(combinedText):
+    # TODO try to get vocab and count in another way, 
+    words = combinedText.split()
+    vocab = [word for word, word_count in Counter(words).most_common()]
+    return vocab
 
-vocab, vocabcount = get_vocab(heads[i]+descs[i])
+vocab = get_vocab(heads[i]+descs[i])
 
-#print (vocab[:50])
-#print ('...', len(vocab))
+print (vocab[:50])
+print ('...', len(vocab))

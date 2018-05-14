@@ -10,7 +10,7 @@ keywords = []
 with jsonlines.open('../data/too-large-for-git/signalmedia-1m' + '.jsonl','r') as reader:
     i = 0
     for obj in reader:
-        if i < 2:
+        if i < 10:
             i += 1
             head = obj["title"]
             desc = obj["content"]
