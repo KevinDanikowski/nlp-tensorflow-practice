@@ -50,12 +50,14 @@ def get_glove_weights(dataset, word_to_idx):
     
     # with codecs.open(dataset, "r", encoding="latin-1") as f:
     f = open(dataset, 'r')
+    #NOTE may be assigning weights to the sentence
     for line in f:
         line = line.strip()
         line = line.split(' ')
         line[1:] = [float(i) for i in line[1:]]
         weight_dict[line[0].lower()] = line[1:]
     
+
     weights = np.zeros((len(word_to_idx)+1, 50))
     weights[1] = list(np.random.uniform(low=-0.1, high=0.1, size=50))
     weights[2] = list(np.random.uniform(low=-0.1, high=0.1, size=50))
@@ -133,6 +135,8 @@ if __name__ == '__main__':
 
 
 # ORIGIN http://www.pythonexample.com/code/embeddings/
+# NOTE input is tupuls from glove, and our words from vocab
+# NOTE Response may be words in order of usefulness in a matrix formax based on glove weight assignments?
 def build_glove_matrix(glove_dictionary):
     """
         return word2idx and matrix
@@ -140,6 +144,7 @@ def build_glove_matrix(glove_dictionary):
     idx2word = {}
     glove_matrix = []
     i=0
+    #key probably word, value probably weight
     for key, value in glove_dictionary.iteritems():
         idx2word[i] = key
         glove_matrix.append(value)

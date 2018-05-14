@@ -29,8 +29,9 @@ print (vocab[:50])
 print ('...', len(vocab))
 
 #Create word embeddings with GloVe
+# todo: properly set up get_glove_weights and know what the output should be
 path = '../data/too-large-for-git/glove.6B.zip'
-glove_weights = get_glove_weights(path, origin="http://nlp.stanford.edu/data/glove.6B.zip")
+glove_weights = pr.get_glove_weights(path, origin="http://nlp.stanford.edu/data/glove.6B.zip") # NOTE I believe these are tupuls of word, weight see https://github.com/maciejkula/glove-python for example
 word_embeddings = pr.build_glove_matrix(glove_weights, vocab)
 
 #3 stacked LSTM RNN
